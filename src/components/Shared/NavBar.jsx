@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import Button from "../Button/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Avatar from "../Avatar/Avatar";
 
 const navBarLinks = (
   <>
@@ -33,10 +34,8 @@ const navBarLinks = (
 );
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const handleLogOut = () => {
-    logOut();
-  };
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="navbar ">
       <div className="navbar-start">
@@ -71,7 +70,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <Button onclick={handleLogOut} label="Logout"></Button>
+          <Avatar></Avatar>
         ) : (
           <Link to="/login">
             <Button label="Login"></Button>

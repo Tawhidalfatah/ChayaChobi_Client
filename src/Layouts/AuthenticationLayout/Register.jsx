@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../../Providers/AuthProvider";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
   const { createUser, updateUserInfo, googleSignIn, logOut } =

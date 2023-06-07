@@ -2,7 +2,7 @@ import { BsGoogle, BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
