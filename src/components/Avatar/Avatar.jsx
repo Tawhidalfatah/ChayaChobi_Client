@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import profile from "../../../public/placeholder.png";
+import profile from "../../assets/placeholder.png";
 import { Link } from "react-router-dom";
 const Avatar = () => {
   const { user, logOut } = useContext(AuthContext);
