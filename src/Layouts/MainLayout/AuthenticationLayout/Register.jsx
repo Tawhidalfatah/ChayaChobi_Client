@@ -1,7 +1,10 @@
-import { BsGoogle } from "react-icons/bs";
+import { useState } from "react";
+import { BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [togglePass, setTogglePass] = useState(false);
+  const [toggleConfirm, setToggleConfirm] = useState(false);
   const handleSubmit = () => {
     console.log("yahaalo");
   };
@@ -39,25 +42,55 @@ const Register = () => {
               className="input input-bordered"
             />
           </div>
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
-              type="password"
+              type={togglePass ? "text" : "password"}
               placeholder="password"
               className="input input-bordered"
             />
+            {togglePass ? (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setTogglePass(!togglePass)}
+              >
+                <BsEyeSlash />
+              </span>
+            ) : (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setTogglePass(!togglePass)}
+              >
+                <BsEye />
+              </span>
+            )}
           </div>
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="label">
               <span className="label-text">Confirm Password</span>
             </label>
             <input
-              type="password"
+              type={toggleConfirm ? "text" : "password"}
               placeholder="confirm password"
               className="input input-bordered"
             />
+            {toggleConfirm ? (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setToggleConfirm(!toggleConfirm)}
+              >
+                <BsEyeSlash />
+              </span>
+            ) : (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setToggleConfirm(!toggleConfirm)}
+              >
+                <BsEye />
+              </span>
+            )}
           </div>
           <Link className="hover:underline text-center py-2" to="/login">
             Already have an account? Login!!

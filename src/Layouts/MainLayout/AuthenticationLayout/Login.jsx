@@ -1,38 +1,82 @@
-import { BsGoogle } from "react-icons/bs";
+import { BsGoogle, BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const [toggleReveal, setToggleReveal] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
+
+  const onSubmit = (data) => {
+    if (!passwordRegex.test(data.password)) {
+      setError("Password must have a special and capital Character");
+      return;
+    } else if (data.password.length < 6) {
+      setError("Password must be minimum 6 character");
+      return;
+    } else {
+      console.log(data);
+      setError("");
+    }
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="w-full max-w-sm rounded-xl shadow-2xl bg-base-100">
-        <div className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
-              type="text"
+              {...register("email")}
+              required
+              type="email"
               placeholder="email"
               className="input input-bordered"
             />
           </div>
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
-              type="text"
+              {...register("password", {
+                required: true,
+              })}
+              type={toggleReveal ? "text" : "password"}
               placeholder="password"
               className="input input-bordered"
             />
+            {toggleReveal ? (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setToggleReveal(!toggleReveal)}
+              >
+                <BsEyeSlash />
+              </span>
+            ) : (
+              <span
+                className="cursor-pointer absolute bottom-4 right-5"
+                onClick={() => setToggleReveal(!toggleReveal)}
+              >
+                <BsEye />
+              </span>
+            )}
+            <p className="text-red-600 text-center">{error}</p>
           </div>
           <Link className="hover:underline text-center py-2" to="/register">
             New to ChayaChobi? Register now!!
           </Link>
           <div className="form-control mt-4">
-            <button className="btn btn-primary btn-outline text-xl">
-              Login
-            </button>
+            <input
+              value="Login"
+              type="submit"
+              className="btn btn-primary btn-outline text-xl"
+            />
           </div>
           <div className="form-control mt-2">
             <button className="btn text-xl">
@@ -40,7 +84,7 @@ const Login = () => {
               <BsGoogle size={28} />
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
