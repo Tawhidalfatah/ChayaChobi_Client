@@ -1,11 +1,15 @@
 import { BsGoogle, BsEye, BsEyeSlash } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const [toggleReveal, setToggleReveal] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -22,8 +26,8 @@ const Login = () => {
     } else {
       signIn(data.email, data.password)
         .then((res) => {
-          const user = res.user;
-          alert("user", user);
+          console.log(res.user);
+          navigate(from, { replace: true });
         })
         .catch((err) => {
           console.log(err);
@@ -34,7 +38,10 @@ const Login = () => {
     }
   };
   const handleGoogleSignIn = () => {
-    googleSignIn().then((res) => console.log(res.user));
+    googleSignIn().then((res) => {
+      navigate(from, { replace: true });
+      console.log(res.user);
+    });
   };
 
   return (
