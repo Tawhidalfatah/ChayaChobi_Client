@@ -1,9 +1,11 @@
 import { BsGoogle, BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Login = () => {
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [toggleReveal, setToggleReveal] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -18,9 +20,21 @@ const Login = () => {
       setError("Password must be minimum 6 character");
       return;
     } else {
-      console.log(data);
+      signIn(data.email, data.password)
+        .then((res) => {
+          const user = res.user;
+          alert("user", user);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(data.email, data.password);
+        });
+
       setError("");
     }
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((res) => console.log(res.user));
   };
 
   return (
@@ -78,13 +92,13 @@ const Login = () => {
               className="btn btn-primary btn-outline text-xl"
             />
           </div>
-          <div className="form-control mt-2">
-            <button className="btn text-xl">
-              Sign in with Google
-              <BsGoogle size={28} />
-            </button>
-          </div>
         </form>
+        <div className="flex justify-center mb-2">
+          <button onClick={handleGoogleSignIn} className="btn text-xl">
+            Sign in with Google
+            <BsGoogle size={28} />
+          </button>
+        </div>
       </div>
     </div>
   );
