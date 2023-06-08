@@ -1,16 +1,20 @@
 import { useContext, useState } from "react";
 import { BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, updateUserInfo, googleSignIn, logOut } =
-    useContext(AuthContext);
+  const { createUser, updateUserInfo, googleSignIn } = useContext(AuthContext);
   const [togglePass, setTogglePass] = useState(false);
   const [toggleConfirm, setToggleConfirm] = useState(false);
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const passwordRegex =
     /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
 
@@ -26,17 +30,31 @@ const Register = () => {
       return;
     } else {
       setError("");
-      createUser(data.email, data.password)
-        .then((res) => {
-          const user = res.user;
-          console.log(user);
-          updateUserInfo(data.name, data.photurl)
-            .then(() => {})
-            .catch((err) => console.log(err));
-          logOut();
-        })
-        .catch((err) => console.log(err));
-      console.log(data);
+
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+      const url = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_APIKEY
+      }`;
+      axios.post(url, formData).then((res) => {
+        const photoUrl = res.data.data.display_url;
+
+        createUser(data.email, data.password)
+          .then((res) => {
+            const user = res.user;
+            console.log(user);
+            updateUserInfo(data.name, photoUrl)
+              .then(() => {
+                reset();
+                toast.success("Account Successfully Created");
+                navigate(from, { replace: true });
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
     }
   };
 
@@ -62,14 +80,16 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Photo URL</span>
+              <span className="label-text">Choose Photo</span>
             </label>
             <input
-              {...register("photurl", { required: true })}
+              {...register("image", { required: true })}
               required
-              type="url"
-              placeholder="Photo URL"
-              className="input input-bordered"
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="file-input file-input-bordered w-full max-w-xs"
             />
           </div>
           <div className="form-control">

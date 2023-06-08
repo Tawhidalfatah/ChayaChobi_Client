@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Slider.css";
 
-import sliderImages from "../../../../public/directors.json";
+import sliderImages from "../../../assets/directors.json";
 const Slider = () => {
   return (
     <div>
