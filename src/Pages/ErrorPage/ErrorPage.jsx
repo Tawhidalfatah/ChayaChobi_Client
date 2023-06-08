@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import errorAnimation from "../../../public/lighthouse.json";
+import errorAnimation from "../../assets/lighthouse.json";
 import { useRouteError } from "react-router-dom";
 const ErrorPage = () => {
   const error = useRouteError();

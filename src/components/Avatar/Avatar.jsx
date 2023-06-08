@@ -26,9 +26,7 @@ const Avatar = () => {
             Dashboard
           </Link>
         </li>
-        <li>
-          <a className="text-xl">Settings</a>
-        </li>
+
         <li>
           <span className="text-xl" onClick={handleLogOut}>
             Logout

@@ -29,7 +29,7 @@ const Register = () => {
       createUser(data.email, data.password)
         .then((res) => {
           const user = res.user;
-          alert("User", user);
+          console.log(user);
           updateUserInfo(data.name, data.photurl)
             .then(() => {})
             .catch((err) => console.log(err));
