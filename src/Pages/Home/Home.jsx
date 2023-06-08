@@ -1,9 +1,11 @@
+import Popular from "./Popular/Popular";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Slider></Slider>
+      <Popular></Popular>
     </div>
   );
 };

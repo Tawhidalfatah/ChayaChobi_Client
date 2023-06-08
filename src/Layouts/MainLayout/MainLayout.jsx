@@ -7,11 +7,11 @@ const MainLayout = () => {
     <div className="relative min-h-screen">
       <NavBar></NavBar>
 
-      <div className="pt-24 min-h-[calc(100vh-68px)]">
+      <div>
         <Outlet />
       </div>
 
-      <div className="absolute bottom-0 w-full">
+      <div className="">
         <Footer></Footer>
       </div>
     </div>
