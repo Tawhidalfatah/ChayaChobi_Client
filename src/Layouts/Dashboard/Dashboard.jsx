@@ -2,13 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import Logout from "../../components/Logout/Logout";
 import useInstructor from "../../hooks/useInstructor";
-// import { useContext } from "react";
-// import { AuthContext } from "../../Providers/AuthProvider";
 
 const Dashboard = () => {
-  // const { user, loading } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
+
   console.log(isAdmin);
   return (
     <div className="drawer lg:drawer-open">
@@ -46,10 +44,10 @@ const Dashboard = () => {
                     <Link to="/dashboard/home">Instructor Lobby</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard/manageusers">Manage Users</Link>
+                    <Link to="/dashboard/addclass">Add a Class</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard/manageclasses">Manage Classes</Link>
+                    <Link to="/dashboard/myclasses">My Classes</Link>
                   </li>
                 </>
               ) : (
@@ -66,6 +64,9 @@ const Dashboard = () => {
                     <Link to="/dashboard/enrolledclasses">
                       My Enrolled Classes
                     </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/payhistory">Payment History</Link>
                   </li>
                 </>
               )}

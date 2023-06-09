@@ -46,7 +46,11 @@ const Register = () => {
             console.log(user);
             updateUserInfo(data.name, photoUrl)
               .then(() => {
-                const saveUser = { name: data.name, email: data.email };
+                const saveUser = {
+                  name: data.name,
+                  email: data.email,
+                  role: "student",
+                };
                 axios
                   .post(`${import.meta.env.VITE_BASE_URL}/users`, saveUser)
                   .then((res) => {

@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
-import { Navigate, useLocation } from "react-router-dom";
+import useInstructor from "../hooks/useInstructor";
 import { ThreeDots } from "react-loader-spinner";
+import { Navigate, useLocation } from "react-router-dom";
 
-const PrivateRoute = ({ children }) => {
+const InstructorRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-
+  const [isInstructor, isInstructorLoading] = useInstructor();
   const location = useLocation();
-  if (loading) {
+
+  if (loading || isInstructorLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <ThreeDots
@@ -24,10 +26,11 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  if (user) {
+  if (user && isInstructor) {
     return children;
   }
 
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
-export default PrivateRoute;
+
+export default InstructorRoute;
