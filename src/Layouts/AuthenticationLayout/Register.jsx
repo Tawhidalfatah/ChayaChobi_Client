@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn";
 
 const Register = () => {
-  const { createUser, updateUserInfo, googleSignIn } = useContext(AuthContext);
+  const { createUser, updateUserInfo } = useContext(AuthContext);
   const [togglePass, setTogglePass] = useState(false);
   const [toggleConfirm, setToggleConfirm] = useState(false);
   const [error, setError] = useState("");
@@ -45,9 +46,16 @@ const Register = () => {
             console.log(user);
             updateUserInfo(data.name, photoUrl)
               .then(() => {
-                reset();
-                toast.success("Account Successfully Created");
-                navigate(from, { replace: true });
+                const saveUser = { name: data.name, email: data.email };
+                axios
+                  .post(`${import.meta.env.VITE_BASE_URL}/users`, saveUser)
+                  .then((res) => {
+                    if (res.data.insertedId) {
+                      reset();
+                      toast.success("Account Successfully Created");
+                      navigate(from, { replace: true });
+                    }
+                  });
               })
               .catch((err) => console.log(err));
           })
@@ -56,10 +64,6 @@ const Register = () => {
           });
       });
     }
-  };
-
-  const handleGoogleSignIn = () => {
-    googleSignIn().then((res) => console.log(res.user));
   };
 
   return (
@@ -171,12 +175,7 @@ const Register = () => {
             ></input>
           </div>
         </form>
-        <div className="form-control mt-2">
-          <button onClick={handleGoogleSignIn} className="btn text-xl">
-            Sign in with Google
-            <BsGoogle size={28} />
-          </button>
-        </div>
+        <GoogleSignIn></GoogleSignIn>
       </div>
     </div>
   );

@@ -1,14 +1,15 @@
-import { BsGoogle, BsEye, BsEyeSlash } from "react-icons/bs";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+
   const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const [toggleReveal, setToggleReveal] = useState(false);
@@ -36,12 +37,6 @@ const Login = () => {
 
       setError("");
     }
-  };
-  const handleGoogleSignIn = () => {
-    googleSignIn().then((res) => {
-      navigate(from, { replace: true });
-      console.log(res.user);
-    });
   };
 
   return (
@@ -100,12 +95,7 @@ const Login = () => {
             />
           </div>
         </form>
-        <div className="flex justify-center mb-2">
-          <button onClick={handleGoogleSignIn} className="btn text-xl">
-            Sign in with Google
-            <BsGoogle size={28} />
-          </button>
-        </div>
+        <GoogleSignIn></GoogleSignIn>
       </div>
     </div>
   );
