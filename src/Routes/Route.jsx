@@ -36,6 +36,12 @@ export const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "home",
+        element: <div>Dashboard Home</div>,
+      },
+    ],
   },
   {
     path: "/login",

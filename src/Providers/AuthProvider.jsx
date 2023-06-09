@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const auth = getAuth(app);
 
@@ -52,7 +53,19 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("Current User", currentUser);
-      setLoading(false);
+      if (currentUser) {
+        axios
+          .post(`${import.meta.env.VITE_BASE_URL}/jwt`, {
+            email: currentUser.email,
+          })
+
+          .then((data) => {
+            localStorage.setItem("summer-camp-token", data.data.token);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("summer-camp-token");
+      }
     });
 
     return () => {

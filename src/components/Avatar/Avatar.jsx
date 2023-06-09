@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import profile from "../../assets/placeholder.png";
 import { Link } from "react-router-dom";
+import Logout from "../Logout/Logout";
 const Avatar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const handleLogOut = () => {
-    logOut();
-  };
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -22,15 +21,13 @@ const Avatar = () => {
         className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li>
-          <Link to="/dashboard" className="text-xl">
+          <Link to="/dashboard/home" className="text-xl">
             Dashboard
           </Link>
         </li>
 
         <li>
-          <span className="text-xl" onClick={handleLogOut}>
-            Logout
-          </span>
+          <Logout></Logout>
         </li>
       </ul>
     </div>
