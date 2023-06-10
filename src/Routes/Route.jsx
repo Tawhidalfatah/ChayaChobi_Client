@@ -6,13 +6,14 @@ import Register from "../Layouts/AuthenticationLayout/Register";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Lobby from "../Pages/Dashboard/Lobby";
-import InstructorRoute from "./InstructorRoute";
-import AdminRoute from "./AdminRoute";
-import StudentRoute from "./StudentRoute";
+// import InstructorRoute from "./InstructorRoute";
+// import AdminRoute from "./AdminRoute";
+// import StudentRoute from "./StudentRoute";
 import AddClass from "../Pages/AddClass/AddClass";
+import MyClasses from "../Pages/MyClasses/MyClasses";
 
 export const router = createBrowserRouter([
   {
@@ -38,78 +39,42 @@ export const router = createBrowserRouter([
   // Routes for all types of authenticated users
   {
     path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <Dashboard></Dashboard>
-      </PrivateRoute>
-    ),
+    element: <Dashboard></Dashboard>,
     children: [
       {
         path: "home",
-        element: (
-          <PrivateRoute>
-            <Lobby></Lobby>
-          </PrivateRoute>
-        ),
+        element: <Lobby></Lobby>,
       },
       // Private Student Routes
       {
         path: "selectedclasses",
-        element: (
-          <StudentRoute>
-            <div>Selected Classes</div>
-          </StudentRoute>
-        ),
+        element: <div>Selected Classes</div>,
       },
       {
         path: "enrolledclasses",
-        element: (
-          <StudentRoute>
-            <div>Enrolled Classes</div>
-          </StudentRoute>
-        ),
+        element: <div>Enrolled Classes</div>,
       },
       {
         path: "payhistory",
-        element: (
-          <StudentRoute>
-            <div>Pay history</div>
-          </StudentRoute>
-        ),
+        element: <div>Pay history</div>,
       },
       // Private Instructor Routes
       {
         path: "addclass",
-        element: (
-          <InstructorRoute>
-            <AddClass></AddClass>
-          </InstructorRoute>
-        ),
+        element: <AddClass></AddClass>,
       },
       {
         path: "myclasses",
-        element: (
-          <InstructorRoute>
-            <div>My Classes</div>
-          </InstructorRoute>
-        ),
+        element: <MyClasses></MyClasses>,
       },
       // Admin routes
       {
         path: "manageusers",
-        element: (
-          <AdminRoute>
-            <div>Manage Users</div>
-          </AdminRoute>
-        ),
+        element: <div>Manage Users</div>,
       },
       {
         path: "manageclasses",
-        element: (
-          <AdminRoute>
-            <div>Manage Users</div>
-          </AdminRoute>
-        ),
+        element: <div>Manage Users</div>,
       },
     ],
   },

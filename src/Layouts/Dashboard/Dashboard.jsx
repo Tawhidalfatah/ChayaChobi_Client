@@ -2,10 +2,12 @@ import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import Logout from "../../components/Logout/Logout";
 import useInstructor from "../../hooks/useInstructor";
+// import useStudent from "../../hooks/useStudent";
 
 const Dashboard = () => {
-  const [isAdmin, isAdminLoading] = useAdmin();
-  const [isInstructor, isInstructorLoading] = useInstructor();
+  // const [, isStudentLoading] = useStudent();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   console.log(isAdmin);
   return (
@@ -24,61 +26,59 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-          {(!isAdminLoading || !isInstructorLoading) && (
-            <>
-              {isAdmin ? (
-                <>
-                  <li>
-                    <Link to="/dashboard/home">Admin Lobby</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/manageusers">Manage Users</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/manageclasses">Manage Classes</Link>
-                  </li>
-                </>
-              ) : isInstructor ? (
-                <>
-                  <li>
-                    <Link to="/dashboard/home">Instructor Lobby</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/addclass">Add a Class</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/myclasses">My Classes</Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link to="/dashboard/home">User Lobby</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/selectedclasses">
-                      My Selected Classes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/enrolledclasses">
-                      My Enrolled Classes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/payhistory">Payment History</Link>
-                  </li>
-                </>
-              )}
-              <div className="divider"></div>
-              <li>
-                <Link to="/">Go Back Home</Link>
-              </li>
-              <li>
-                <Logout></Logout>
-              </li>
-            </>
-          )}
+          <>
+            {isAdmin ? (
+              <>
+                <li>
+                  <Link to="/dashboard/home">Admin Lobby</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/manageusers">Manage Users</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/manageclasses">Manage Classes</Link>
+                </li>
+              </>
+            ) : isInstructor ? (
+              <>
+                <li>
+                  <Link to="/dashboard/home">Instructor Lobby</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/addclass">Add a Class</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/myclasses">My Classes</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/dashboard/home">User Lobby</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/selectedclasses">
+                    My Selected Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/enrolledclasses">
+                    My Enrolled Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/payhistory">Payment History</Link>
+                </li>
+              </>
+            )}
+            <div className="divider"></div>
+            <li>
+              <Link to="/">Go Back Home</Link>
+            </li>
+            <li>
+              <Logout></Logout>
+            </li>
+          </>
         </ul>
       </div>
     </div>

@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
           })
 
           .then((data) => {
+            console.log(data);
             localStorage.setItem("summer-camp-token", data.data.token);
             setLoading(false);
           });
