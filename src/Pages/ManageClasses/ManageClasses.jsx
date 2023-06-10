@@ -29,7 +29,12 @@ const ManageClasses = () => {
     // Perform PATCH request with feedbackText
     console.log(selectedRow.class_name);
     console.log(feedbackText);
-
+    const feedbackData = {
+      feedback: feedbackText,
+    };
+    axiosSecure
+      .patch(`/classes/feedback/${selectedRow._id}`, feedbackData)
+      .then((res) => console.log(res.data));
     // After successful response, close the modal and reset the feedbackText
     handleModalClose();
   };
