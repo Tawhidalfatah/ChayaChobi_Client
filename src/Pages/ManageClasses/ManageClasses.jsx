@@ -3,6 +3,7 @@ import { useState } from "react";
 import useManageClasses from "../../hooks/useManageClasses";
 import FeedbackModal from "../../components/FeedbackModal/FeedbackModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import ManageClassesRow from "../../components/ManageClassesRow/ManageClassesRow";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -59,43 +60,12 @@ const ManageClasses = () => {
             </thead>
             <tbody>
               {allclasses?.map((cls, index) => (
-                <tr key={cls._id}>
-                  <th>{index + 1}</th>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={cls.class_image}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="font-bold">{cls.class_name}</div>
-                    </div>
-                  </td>
-                  <td>
-                    {cls.instructor_name}
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      {cls.instructor_email}
-                    </span>
-                  </td>
-                  <td>{cls.available_seats}</td>
-                  <td>{cls.price}</td>
-                  <td>{cls.status}</td>
-                  <td>
-                    <button className="btn btn-ghost btn-xs">Approve</button>
-                    <button className="btn btn-ghost btn-xs">Deny</button>
-                    <button
-                      onClick={() => handleSendFeedback(cls)}
-                      className="btn btn-ghost btn-xs"
-                    >
-                      Send Feedback
-                    </button>
-                  </td>
-                </tr>
+                <ManageClassesRow
+                  key={cls._id}
+                  cls={cls}
+                  index={index}
+                  handleSendFeedback={handleSendFeedback}
+                ></ManageClassesRow>
               ))}
             </tbody>
             {showModal && (
