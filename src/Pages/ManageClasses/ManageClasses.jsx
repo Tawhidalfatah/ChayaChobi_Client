@@ -2,15 +2,17 @@ import { useState } from "react";
 
 import useManageClasses from "../../hooks/useManageClasses";
 import FeedbackModal from "../../components/FeedbackModal/FeedbackModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageClasses = () => {
+  const [axiosSecure] = useAxiosSecure();
   const [allclasses] = useManageClasses();
   const [showModal, setShowModal] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
 
-  const handleSendFeedback = (row) => {
-    setSelectedRow(row);
+  const handleSendFeedback = (selectedClass) => {
+    setSelectedRow(selectedClass);
     setShowModal(true);
   };
 
@@ -24,11 +26,10 @@ const ManageClasses = () => {
   };
 
   const handleSend = () => {
-    // Perform PATCH request with feedbackText and selectedRow
-    // Send feedbackText to the server for the selected row data
-    // Update the server with the feedback using the PATCH method
+    // Perform PATCH request with feedbackText
+    console.log(selectedRow.class_name);
     console.log(feedbackText);
-    console.log(selectedRow);
+
     // After successful response, close the modal and reset the feedbackText
     handleModalClose();
   };
@@ -83,7 +84,7 @@ const ManageClasses = () => {
                     <button className="btn btn-ghost btn-xs">Approve</button>
                     <button className="btn btn-ghost btn-xs">Deny</button>
                     <button
-                      onClick={() => handleSendFeedback(cls.instructor_email)}
+                      onClick={() => handleSendFeedback(cls)}
                       className="btn btn-ghost btn-xs"
                     >
                       Send Feedback
@@ -94,12 +95,22 @@ const ManageClasses = () => {
             </tbody>
             {showModal && (
               <FeedbackModal onClose={handleModalClose}>
-                <textarea
-                  value={feedbackText}
-                  onChange={handleFeedbackChange}
-                  placeholder="Write your feedback..."
-                />
-                <button onClick={handleSend}>Send</button>
+                <div className="flex flex-col mt-10 gap-5 items-center">
+                  <div>
+                    <h2>Class Name: {selectedRow?.class_name}</h2>
+
+                    <p>Instructor: {selectedRow?.instructor_name}</p>
+                  </div>
+                  <textarea
+                    className="textarea textarea-bordered w-full"
+                    value={feedbackText}
+                    onChange={handleFeedbackChange}
+                    placeholder="Write your feedback..."
+                  />
+                  <button className="btn btn-primary" onClick={handleSend}>
+                    Send Feedback
+                  </button>
+                </div>
               </FeedbackModal>
             )}
           </table>
