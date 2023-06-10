@@ -49,6 +49,7 @@ const Register = () => {
                 const saveUser = {
                   name: data.name,
                   email: data.email,
+                  photo: photoUrl,
                   role: "student",
                 };
                 axios

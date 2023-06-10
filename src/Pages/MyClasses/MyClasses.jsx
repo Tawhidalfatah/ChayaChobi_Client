@@ -1,20 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import useMyClasses from "../../hooks/useMyClasses";
 
 const MyClasses = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user?.email);
-  const [axiosSecure] = useAxiosSecure();
-  const { data: myClasses = [] } = useQuery({
-    queryKey: ["myclasses", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/myclasses/${user?.email}`);
-
-      return res.data;
-    },
-  });
+  const [myClasses] = useMyClasses();
   console.log(myClasses);
   return (
     <div className="overflow-x-auto w-full">
@@ -23,20 +10,29 @@ const MyClasses = () => {
         {/* head */}
         <thead>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
+            <th>#</th>
+            <th>Class Name</th>
+            <th>Available Seats</th>
+            <th>Enrolled Students</th>
+            <th>Status</th>
+            <th>Admin Feedback</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
-          <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-          </tr>
+          {myClasses.map((cls, index) => (
+            <tr key={cls._id}>
+              <td>{index + 1}</td>
+              <td>{cls.class_name}</td>
+              <td>{cls.available_seats}</td>
+              <td>{cls.enrolled_students_quantity}</td>
+              <td>{cls.status}</td>
+              <td>{cls?.feedback && cls.feedback}</td>
+              <td>
+                <button className="btn btn-xs">Update</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

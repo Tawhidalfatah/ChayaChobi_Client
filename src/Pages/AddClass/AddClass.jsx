@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import useMyClasses from "../../hooks/useMyClasses";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
+  const [, refetch] = useMyClasses();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,6 +36,8 @@ const AddClass = () => {
         .then((res) => {
           if (res.data.insertedId) {
             toast.success("Class added successfully");
+            refetch();
+            navigate("/dashboard/myclasses");
           }
         })
         .catch((err) => console.log(err));
