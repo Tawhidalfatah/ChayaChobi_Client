@@ -18,6 +18,7 @@ import ManageUsers from "../Pages/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/ManageClasses/ManageClasses";
 import AllClasses from "../Pages/Home/AllClasses/AllClasses";
 import SelectedClasses from "../Pages/SelectedClasses/SelectedClasses";
+import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 
 export const router = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/payment/:id",
+    element: <PaymentPage></PaymentPage>,
   },
   {
     path: "/login",

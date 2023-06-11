@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useSelectedClasses from "../../hooks/useSelectedClasses";
+import { Link } from "react-router-dom";
 
 const SelectedClassRow = ({ selectedClass }) => {
   const { _id, class_name, class_image, price, instructor_name } =
@@ -61,7 +62,9 @@ const SelectedClassRow = ({ selectedClass }) => {
         >
           delete
         </button>
-        <button className="btn btn-ghost btn-xs">pay</button>
+        <Link to={`/payment/${_id}`}>
+          <button className="btn btn-ghost btn-xs">pay</button>
+        </Link>
       </th>
     </tr>
   );
