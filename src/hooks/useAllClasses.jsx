@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const useAllClasses = () => {
-  const { data: approvedClasses } = useQuery({
+  const { data: approvedClasses = [] } = useQuery({
     queryKey: ["approvedclasses"],
     queryFn: async () => {
       const res = await axios.get(
