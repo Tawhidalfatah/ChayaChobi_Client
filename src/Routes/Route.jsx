@@ -19,6 +19,8 @@ import ManageClasses from "../Pages/ManageClasses/ManageClasses";
 import AllClasses from "../Pages/Home/AllClasses/AllClasses";
 import SelectedClasses from "../Pages/SelectedClasses/SelectedClasses";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
+import EnrolledClasses from "../Pages/EnrolledClasses/EnrolledClasses";
+import PaymentHistory from "../Pages/PaymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -71,7 +73,7 @@ export const router = createBrowserRouter([
         path: "enrolledclasses",
         element: (
           <StudentRoute>
-            <div>Enrolled Classes</div>
+            <EnrolledClasses></EnrolledClasses>
           </StudentRoute>
         ),
       },
@@ -79,7 +81,7 @@ export const router = createBrowserRouter([
         path: "payhistory",
         element: (
           <StudentRoute>
-            <div>Pay history</div>
+            <PaymentHistory></PaymentHistory>
           </StudentRoute>
         ),
       },
