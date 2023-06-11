@@ -5,7 +5,7 @@ import Login from "../Layouts/AuthenticationLayout/Login";
 import Register from "../Layouts/AuthenticationLayout/Register";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Instructors from "../Pages/Instructors/Instructors";
-import Classes from "../Pages/Classes/Classes";
+
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Lobby from "../Pages/Dashboard/Lobby";
@@ -16,6 +16,7 @@ import AddClass from "../Pages/AddClass/AddClass";
 import MyClasses from "../Pages/MyClasses/MyClasses";
 import ManageUsers from "../Pages/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/ManageClasses/ManageClasses";
+import AllClasses from "../Pages/Home/AllClasses/AllClasses";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <Classes></Classes>,
+        element: <AllClasses></AllClasses>,
       },
     ],
   },
