@@ -17,6 +17,7 @@ import MyClasses from "../Pages/MyClasses/MyClasses";
 import ManageUsers from "../Pages/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/ManageClasses/ManageClasses";
 import AllClasses from "../Pages/Home/AllClasses/AllClasses";
+import SelectedClasses from "../Pages/SelectedClasses/SelectedClasses";
 
 export const router = createBrowserRouter([
   {
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
         path: "selectedclasses",
         element: (
           <StudentRoute>
-            <div>Selected Classes</div>
+            <SelectedClasses></SelectedClasses>
           </StudentRoute>
         ),
       },
