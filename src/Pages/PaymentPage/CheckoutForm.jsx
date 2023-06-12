@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import "./CheckoutForm.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSelectedClasses from "../../hooks/useSelectedClasses";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
@@ -95,6 +96,7 @@ const CheckoutForm = () => {
                 `${selectedClass.class_name} enrolled successfully!!.`,
                 "success"
               );
+              navigate("/dashboard/payhistory");
             }
           })
           .catch((err) => console.log(err));

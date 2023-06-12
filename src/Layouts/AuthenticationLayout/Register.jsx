@@ -11,7 +11,7 @@ const Register = () => {
   const { createUser, updateUserInfo } = useContext(AuthContext);
   const [togglePass, setTogglePass] = useState(false);
   const [toggleConfirm, setToggleConfirm] = useState(false);
-  const [error, setError] = useState("");
+
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,17 +21,15 @@ const Register = () => {
 
   const onSubmit = (data) => {
     if (!passwordRegex.test(data.password)) {
-      setError("Passwords must have a special and capital Character");
+      toast.error("Passwords must have a special and capital Character");
       return;
     } else if (data.password.length < 6 || data.confirmpassword < 6) {
-      setError("Passwords must be minimum 6 character");
+      toast.error("Passwords must be minimum 6 character");
       return;
     } else if (data.password !== data.confirmpassword) {
-      setError("Passwords does not match");
+      toast.error("Passwords does not match");
       return;
     } else {
-      setError("");
-
       const formData = new FormData();
       formData.append("image", data.image[0]);
       const url = `https://api.imgbb.com/1/upload?key=${
@@ -65,7 +63,7 @@ const Register = () => {
               .catch((err) => console.log(err));
           })
           .catch((err) => {
-            console.log(err);
+            toast.error(err.message);
           });
       });
     }
@@ -168,7 +166,7 @@ const Register = () => {
               </span>
             )}
           </div>
-          <p className="text-red-600 text-center">{error}</p>
+
           <Link className="hover:underline text-center py-2" to="/login">
             Already have an account? Login!!
           </Link>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
-  const [error, setError] = useState("");
+
   const [toggleReveal, setToggleReveal] = useState(false);
   const { register, handleSubmit } = useForm();
   const passwordRegex =
@@ -19,23 +20,21 @@ const Login = () => {
 
   const onSubmit = (data) => {
     if (!passwordRegex.test(data.password)) {
-      setError("Password must have a special and capital Character");
+      toast.error("Password must have a special and capital Character");
       return;
     } else if (data.password.length < 6) {
-      setError("Password must be minimum 6 character");
+      toast.error("Password must be minimum 6 character");
       return;
     } else {
       signIn(data.email, data.password)
         .then((res) => {
           console.log(res.user);
+          toast.success("Signed In successfully");
           navigate(from, { replace: true });
         })
         .catch((err) => {
-          console.log(err);
-          console.log(data.email, data.password);
+          toast.error(err.message);
         });
-
-      setError("");
     }
   };
 
@@ -82,7 +81,6 @@ const Login = () => {
                 <BsEye />
               </span>
             )}
-            <p className="text-red-600 text-center">{error}</p>
           </div>
           <Link className="hover:underline text-center py-2" to="/register">
             New to ChayaChobi? Register now!!

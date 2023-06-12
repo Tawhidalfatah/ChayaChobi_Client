@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-
+import { motion } from "framer-motion";
 const PopularInstructors = () => {
   const { data: instructors = [] } = useQuery({
     queryKey: ["popularinstructors"],
@@ -19,7 +19,15 @@ const PopularInstructors = () => {
         {instructors.map((instructorinfo) => (
           <div key={instructorinfo._id} className="col-span-1">
             <div className="flex flex-col gap-2 w-full">
-              <img
+              <motion.img
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ rotate: 360, opacity: 1, scale: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                }}
+                whileHover={{ scale: 1.1 }}
                 src={instructorinfo.photo}
                 alt="Shoes"
                 className="rounded-full object-cover 

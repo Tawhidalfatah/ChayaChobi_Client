@@ -15,7 +15,7 @@ const PopularClasses = () => {
   console.log(classes);
   return (
     <div className="mt-11">
-      <SectionTitle heading="Featured Classes"></SectionTitle>
+      <SectionTitle heading="Popular Classes"></SectionTitle>
       <br />
       <div className="grid grid-cols-3 gap-8 ml-48">
         {classes.map((classinfo) => (

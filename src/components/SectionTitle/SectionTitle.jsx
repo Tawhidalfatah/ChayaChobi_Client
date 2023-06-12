@@ -1,10 +1,18 @@
-import { Slide } from "react-awesome-reveal";
+import { Zoom } from "react-awesome-reveal";
 
 const SectionTitle = ({ heading }) => {
   return (
-    <Slide>
-      <h1 className="text-5xl text-center my-10">{heading}</h1>
-    </Slide>
+    <div className="my-10">
+      <Zoom delay={1}>
+        <div className="divider"></div>
+      </Zoom>
+      <Zoom>
+        <h1 className="text-5xl text-center py-10">{heading}</h1>
+      </Zoom>
+      <Zoom delay={1}>
+        <div className="divider"></div>
+      </Zoom>
+    </div>
   );
 };
 

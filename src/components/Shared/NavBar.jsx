@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Avatar from "../Avatar/Avatar";
-
+import { FcFilmReel } from "react-icons/fc";
 const navBarLinks = (
   <>
     <li>
@@ -37,7 +37,7 @@ const NavBar = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="navbar fixed py-5 top-0 bg-white z-20 shadow-sm">
+    <div className="navbar fixed py-5 top-0 bg-base-300 z-20 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -63,7 +63,10 @@ const NavBar = () => {
             {navBarLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-5xl">ChayaChobi</a>
+        <a className="btn btn-ghost normal-case text-5xl">
+          <FcFilmReel />
+          ChayaChobi
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="flex gap-10 font-bold text-xl px-1">{navBarLinks}</ul>

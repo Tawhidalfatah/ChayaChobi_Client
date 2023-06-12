@@ -1,13 +1,15 @@
+import { FcFilmReel } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10  text-black">
+    <footer className="footer footer-center py-5 bg-base-300 ">
       <div>
+        <FcFilmReel size={60} />
         <Link to="/" className="font-bold normal-case text-3xl">
           ChayaChobi
         </Link>
-        <p className="font-bold">Providing reliable tech since 2023</p>
+        <p className="font-bold">Providing reliable courses since 2023</p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </div>
       <div>

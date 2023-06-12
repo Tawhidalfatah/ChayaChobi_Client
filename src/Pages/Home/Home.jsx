@@ -1,4 +1,3 @@
-import DarkmodeToggle from "../../components/DarkmodeToggle/DarkmodeToggle";
 import Partnerships from "./Partnerships/Partnerships";
 import PopularClasses from "./Popular/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
@@ -11,7 +10,6 @@ const Home = () => {
       <PopularClasses></PopularClasses>
       <PopularInstructors></PopularInstructors>
       <Partnerships></Partnerships>
-      <DarkmodeToggle></DarkmodeToggle>
     </div>
   );
 };

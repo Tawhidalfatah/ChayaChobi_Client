@@ -3,6 +3,7 @@ import { BsGoogle } from "react-icons/bs";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const GoogleSignIn = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -22,6 +23,7 @@ const GoogleSignIn = () => {
           }
           navigate(from, { replace: true });
         });
+      toast.success("Signed in successfully");
     });
   };
   return (
