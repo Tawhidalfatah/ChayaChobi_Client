@@ -3,7 +3,7 @@ const Button = ({ label, disabled, onclick }) => {
     <button
       disabled={disabled}
       onClick={onclick}
-      className="btn btn-outline btn-accent text-xl"
+      className="btn btn-outline btn-primary text-xl"
     >
       {label}
     </button>

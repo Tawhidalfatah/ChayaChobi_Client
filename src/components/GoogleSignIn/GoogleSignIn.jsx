@@ -27,12 +27,17 @@ const GoogleSignIn = () => {
     });
   };
   return (
-    <div className="form-control mt-2">
-      <button onClick={handleGoogleSignIn} className="btn text-xl">
-        Sign in with Google
-        <BsGoogle size={28} />
-      </button>
-    </div>
+    <>
+      <div className="form-control">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn bg-blue-700 m-3 text-white text-xl"
+        >
+          Sign in with Google
+          <BsGoogle size={28} />
+        </button>
+      </div>
+    </>
   );
 };
 

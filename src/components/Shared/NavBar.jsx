@@ -8,7 +8,7 @@ const navBarLinks = (
   <>
     <li>
       <NavLink
-        className={({ isActive }) => (isActive ? "text-accent-focus" : "")}
+        className={({ isActive }) => (isActive ? "text-primary-focus" : "")}
         to="/"
       >
         Home
@@ -16,7 +16,7 @@ const navBarLinks = (
     </li>
     <li>
       <NavLink
-        className={({ isActive }) => (isActive ? "text-accent-focus" : "")}
+        className={({ isActive }) => (isActive ? "text-primary-focus" : "")}
         to="/instructors"
       >
         Instructors
@@ -24,7 +24,7 @@ const navBarLinks = (
     </li>
     <li>
       <NavLink
-        className={({ isActive }) => (isActive ? "text-accent-focus" : "")}
+        className={({ isActive }) => (isActive ? "text-primary-focus" : "")}
         to="/classes"
       >
         Classes
