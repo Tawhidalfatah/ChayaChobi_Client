@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import PopularCard from "../../../components/PopularCard/PopularCard";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
-const Popular = () => {
+const PopularClasses = () => {
   const { data: classes = [] } = useQuery({
     queryKey: ["popularclasses"],
     queryFn: async () => {
@@ -14,7 +15,7 @@ const Popular = () => {
   console.log(classes);
   return (
     <div className="mt-11">
-      <h1 className="text-center text-6xl">Popular Classes</h1>
+      <SectionTitle heading="Featured Classes"></SectionTitle>
       <br />
       <div className="grid grid-cols-3 gap-8 ml-48">
         {classes.map((classinfo) => (
@@ -25,4 +26,4 @@ const Popular = () => {
   );
 };
 
-export default Popular;
+export default PopularClasses;
