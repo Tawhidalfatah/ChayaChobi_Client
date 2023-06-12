@@ -60,30 +60,31 @@ const AllClassesCard = ({ cls }) => {
     }
   };
   return (
-    <div className="col-span-1">
-      <div className="flex flex-col gap-2 w-full">
-        <img
-          src={class_image}
-          alt="Shoes"
-          className=" object-cover 
+    <div className="card w-56 md:w-96 bg-base-100 shadow-xl">
+      <img
+        src={class_image}
+        alt="Shoes"
+        className=" object-cover 
               h-96 
               w-96"
-        />
+      />
 
-        <div className="">
-          <h2 className="">{class_name}</h2>
-          <p>Price: {price}</p>
-          <p>Available Seats: {available_seats}</p>
-          <p>Instructor:{instructor_name}</p>
-        </div>
+      <div className="card-body text-center">
+        <h2 className="card-title">{class_name}</h2>
+        <p>Price: ${price}</p>
+        <p>Available Seats: {available_seats}</p>
+        <p>Instructor: {instructor_name}</p>
       </div>
-      <button
-        disabled={isAdmin || isInstructor || available_seats === 0}
-        onClick={handleAddClass}
-        className="btn btn-primary"
-      >
-        Add Class
-      </button>
+
+      <div className="card-actions justify-center my-5">
+        <button
+          disabled={isAdmin || isInstructor || available_seats === 0}
+          onClick={handleAddClass}
+          className="btn btn-primary"
+        >
+          Add Class
+        </button>
+      </div>
     </div>
   );
 };
