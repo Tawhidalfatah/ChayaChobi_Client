@@ -8,7 +8,7 @@ import "./Slider.css";
 import sliderImages from "../../../assets/directors.json";
 const Slider = () => {
   return (
-    <div>
+    <div className="mt-20">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -27,10 +27,11 @@ const Slider = () => {
           return (
             <SwiperSlide key={index}>
               <div className="absolute hero-overlay text-white  drop-shadow-md font-bold flex flex-col  justify-center items-center  z-10">
-                <div className="w-1/2 mx-auto">
+                <div className="w-1/2 mx-auto  hidden md:block ">
                   <h2 className="text-3xl">{img.quote}</h2>
                 </div>
-                <p className="text-xl">{img.author}</p>
+                <br />
+                <p className="text-xl hidden md:block ">- {img.author}</p>
               </div>
               <img src={img.img} alt="" />
             </SwiperSlide>

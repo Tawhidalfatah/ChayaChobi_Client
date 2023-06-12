@@ -15,10 +15,10 @@ const PopularInstructors = () => {
   return (
     <div>
       <SectionTitle heading="Meet Our Instructors"></SectionTitle>
-      <div className="grid grid-cols-3 gap-8 ml-48">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 ">
         {instructors.map((instructorinfo) => (
           <div key={instructorinfo._id} className="col-span-1">
-            <div className="flex flex-col gap-2 w-full">
+            <div className="flex flex-col items-center gap-2 w-full">
               <motion.img
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ rotate: 360, opacity: 1, scale: 1 }}
@@ -31,9 +31,15 @@ const PopularInstructors = () => {
                 src={instructorinfo.photo}
                 alt="Shoes"
                 className="rounded-full object-cover 
-                    h-96 
-                    w-96"
+                    md:h-96 
+                    md:w-96
+                    h-40
+                    w-40"
               />
+              <br />
+              <p className="text-center text-xl underline underline-offset-4">
+                {instructorinfo.name}
+              </p>
             </div>
           </div>
         ))}

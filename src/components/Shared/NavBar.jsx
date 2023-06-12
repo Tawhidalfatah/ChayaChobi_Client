@@ -63,7 +63,7 @@ const NavBar = () => {
             {navBarLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-5xl">
+        <a className="btn btn-ghost normal-case text-2xl md:text-5xl">
           <FcFilmReel />
           ChayaChobi
         </a>

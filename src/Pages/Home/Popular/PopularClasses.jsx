@@ -17,7 +17,7 @@ const PopularClasses = () => {
     <div className="mt-11">
       <SectionTitle heading="Popular Classes"></SectionTitle>
       <br />
-      <div className="grid grid-cols-3 gap-8 ml-48">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ml-20 md:ml-48">
         {classes.map((classinfo) => (
           <PopularCard key={classinfo._id} classinfo={classinfo}></PopularCard>
         ))}

@@ -25,7 +25,7 @@ const Partnerships = () => {
   return (
     <section className="industry-partnerships">
       <SectionTitle heading="Our Partners"></SectionTitle>
-      <div className="flex items-center justify-evenly">
+      <div className="flex flex-col md:flex-row gap-8 row items-center justify-evenly">
         {partners.map((partner, index) => (
           <motion.div
             key={index}
@@ -45,7 +45,11 @@ const Partnerships = () => {
             }}
             whileTap={{ scale: 0.9, rotate: -10, opacity: 0.6 }}
           >
-            <img className="w-80" src={partner.logoUrl} alt={partner.name} />
+            <img
+              className="w-40 md:w-80"
+              src={partner.logoUrl}
+              alt={partner.name}
+            />
           </motion.div>
         ))}
       </div>

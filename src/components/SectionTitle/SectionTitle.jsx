@@ -7,7 +7,9 @@ const SectionTitle = ({ heading }) => {
         <div className="divider"></div>
       </Zoom>
       <Zoom>
-        <h1 className="text-5xl text-center py-10">{heading}</h1>
+        <h1 className="text-2xl md:text-5xl text-center oy-5 md:py-10">
+          {heading}
+        </h1>
       </Zoom>
       <Zoom delay={1}>
         <div className="divider"></div>
