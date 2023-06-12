@@ -60,7 +60,13 @@ const AllClassesCard = ({ cls }) => {
     }
   };
   return (
-    <div className="card w-56 md:w-96 bg-base-100 shadow-xl">
+    <div
+      className={
+        available_seats === 0
+          ? "card w-56 md:w-96 bg-red-500 shadow-xl"
+          : "card w-56 md:w-96 bg-base-100 shadow-xl"
+      }
+    >
       <img
         src={class_image}
         alt="Shoes"
