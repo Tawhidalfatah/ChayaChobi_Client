@@ -14,7 +14,11 @@ const GoogleSignIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn().then((res) => {
       const user = res.user;
-      const saveUser = { name: user.displayName, email: user.email };
+      const saveUser = {
+        name: user.displayName,
+        email: user.email,
+        role: "student",
+      };
       axios
         .post(`${import.meta.env.VITE_BASE_URL}/users`, saveUser)
         .then((res) => {

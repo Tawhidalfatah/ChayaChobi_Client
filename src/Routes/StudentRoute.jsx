@@ -8,6 +8,7 @@ const StudentRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const [isStudent, isStudentLoading] = useStudent();
   const location = useLocation();
+  console.log(isStudent);
   if (loading || isStudentLoading) {
     return (
       <div className="flex items-center justify-center h-screen">

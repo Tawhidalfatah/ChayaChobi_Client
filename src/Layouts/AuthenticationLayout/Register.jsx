@@ -53,6 +53,7 @@ const Register = () => {
                 axios
                   .post(`${import.meta.env.VITE_BASE_URL}/users`, saveUser)
                   .then((res) => {
+                    console.log(res);
                     if (res.data.insertedId) {
                       reset();
                       toast.success("Account Successfully Created");

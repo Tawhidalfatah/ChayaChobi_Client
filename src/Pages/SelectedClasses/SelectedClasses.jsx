@@ -9,7 +9,6 @@ const SelectedClasses = () => {
       <h2>selected classes :{selectedClasses?.length}</h2>
       <div className="overflow-x-auto">
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
               <th>#</th>
